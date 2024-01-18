@@ -29,28 +29,35 @@ func main() {
 		log.Fatalf("failed to connect database: %v", err)
 	}
 	err = database.AutoMigrate(&models.Item{})
+	err = database.AutoMigrate(&models.Student{})
+	err = database.AutoMigrate(&models.Subject{})
 	if err != nil {
 		log.Fatalf("failed to migrate database: %v", err)
 	}
 
 	itemRepo := models.NewItemRepository(database)
+	stydentRepo := models.NewStudentRepository(database)
+	subRepo := models.NewSubjectRepository(database)
 
 	r := gin.Default()
 
-	// api /items จะเป็นการเรียกใช้งานฟังก์ชัน GetItems ใน ItemRepository
 	r.GET("/items", itemRepo.GetItems)
-
-	// api /items/:id จะเป็นการเรียกใช้งานฟังก์ชัน GetItem ใน ItemRepository
 	r.POST("/items", itemRepo.PostItem)
-
-	// api /items/:id จะเป็นการเรียกใช้งานฟังก์ชัน GetItem ใน ItemRepository
 	r.GET("/items/:id", itemRepo.GetItem)
-
-	// api /items/:id จะเป็นการเรียกใช้งานฟังก์ชัน UpdateItem ใน ItemRepository
 	r.PUT("/items/:id", itemRepo.UpdateItem)
-
-	// api /items/:id จะเป็นการเรียกใช้งานฟังก์ชัน DeleteItem ใน ItemRepository
 	r.DELETE("/items/:id", itemRepo.DeleteItem)
+
+	r.GET("/students", stydentRepo.GetStudents)
+	r.POST("/students", stydentRepo.PostStudent)
+	r.GET("/students/:id", stydentRepo.GetStudent)
+	r.PUT("/students/:id", stydentRepo.UpdateStudent)
+	r.DELETE("/students/:id", stydentRepo.DeleteStudent)
+
+	r.GET("/subjects", subRepo.GetSubjects)
+	r.POST("/subjects", subRepo.PostSubject)
+	r.GET("/subjects/:id", subRepo.GetSubject)
+	r.PUT("/subjects/:id", subRepo.UpdateSubject)
+	r.DELETE("/subjects/:id", subRepo.DeleteSubject)
 
 	r.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"message": "Not found"})
