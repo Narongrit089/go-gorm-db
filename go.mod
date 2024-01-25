@@ -4,6 +4,7 @@ go 1.21.4
 
 require (
 	github.com/anusornc/go-gorm v0.0.0-20240118055648-4d1f22c43ee7
+	github.com/gin-contrib/cors v1.5.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/joho/godotenv v1.5.1
 	gorm.io/driver/mysql v1.5.2
