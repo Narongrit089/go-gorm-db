@@ -7,8 +7,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/Narongrit089/Go-React-Final/db"
-	"github.com/Narongrit089/Go-React-Final/models"
+	"github.com/Narongrit089/go-gorm-db/db"
+	"github.com/Narongrit089/go-gorm-db/models"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"

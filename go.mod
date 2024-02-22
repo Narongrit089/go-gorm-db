@@ -1,4 +1,4 @@
-module github.com/Narongrit089/Go-React-Final
+module github.com/Narongrit089/go-gorm-db
 
 go 1.21.4
 
